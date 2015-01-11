@@ -178,7 +178,7 @@ var Engine = (function(global) {
         });
 
         player.render();
-        
+        lifeHearts.render();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -195,6 +195,7 @@ var Engine = (function(global) {
         level = 1;
         lives = 3;
         player = new Player(200,400);
+        lifeHearts = new LifeHearts();
     }
 
     /* Go ahead and load all of the images we know we're going to need to

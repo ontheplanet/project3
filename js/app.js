@@ -63,7 +63,6 @@ Player.prototype.update = function(){
         if(this.y === -40){
             player.reset();
             lives--;
-            //lifeHearts.update();
         }
     }
     else {
@@ -173,7 +172,7 @@ function checkCollisions(){
         if(Math.abs(allEnemies[i].x - player.x) < 50 && Math.abs(allEnemies[i].y - player.y) < 50){
             player.reset();
             lives--;
-            //lifeHearts.update();
+            
             }
         }
     }
@@ -199,6 +198,19 @@ function checkGemTakes(){
     }
 };
 
+var LifeHearts = function(){
+    this.sprite = "images/hearts.png"; 
+    this.x = 210;
+    this.y = 585;
+};
+
+LifeHearts.prototype.render = function(){
+    for(var i = 0; i < lives; i++){
+        ctx.drawImage(Resources.get(this.sprite), this.x,this.y);
+        this.x = 210+30*i;
+
+    }
+};
 
 // When lost all lives, this function causes the 'GAMEOVER' overlay to appear and stops player and bugs' movements
 function GameOver() {
@@ -216,7 +228,7 @@ var enemy2 = new Enemy(-20,150);
 var enemy3 = new Enemy(-20,240);
 var allEnemies = [enemy1,enemy2,enemy3];
 var player = new Player(200,400);
-
+var lifeHearts = new LifeHearts();
 var allGems = []; 
 var gem = new Gem();
 allGems.push(gem);
