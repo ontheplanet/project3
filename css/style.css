@@ -1,6 +1,6 @@
-*{
+/**{
 	border:  1px solid red !important;
-}
+}*/
 body {
     text-align: center;
     background: #Fdcf61;
@@ -17,10 +17,9 @@ body {
 }
 #gameArea{
 	left: 30%;
-	top:15%;
+	top:5%;
 	position: absolute;
-	width: 100%;
-	height: 100%;
+	
 }
 /*statsPanel */
 #statsPanel{
@@ -30,13 +29,37 @@ body {
     flex-direction: row;
     color: #913a7d;
     font-size: 20px;
-    justify-content: space-between;
+    
     position: absolute;
     width: 100%;
-    height: 8%;
+    height: 6%;
     bottom: 0;
     opacity: 1;
-    margin-left: 5px;
-    margin-right: 5px;
-    
+     
 }
+
+#gameOver{
+    border-radius: 10px;
+    visibility: hidden;
+    background: #EFDAE9;
+    left: 30%;  
+    padding: 20px;
+    position: absolute;
+    text-align: center;
+    top: 45%;
+
+}
+
+h2{
+    color: red;
+}
+
+button{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    background: #3ad43d;
+    font-color: #000000;
+    text-align: center 
+}
+

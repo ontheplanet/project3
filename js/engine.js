@@ -26,9 +26,10 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 505;
-    canvas.height = 606;
-    doc.getElementById("gameArea").appendChild(canvas);
+    canvas.height = 616;
+    document.getElementById("gameArea").appendChild(canvas);
     canvas.setAttribute("id","gameCanvas");
+
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -62,12 +63,18 @@ var Engine = (function(global) {
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
      * game loop.
+     * initial game again when clicked "playagain" button
      */
     function init() {
         reset();
         lastTime = Date.now();
         main();
-    }
+        document.getElementById("continue").addEventListener('click', function(){
+            reset();
+            lastTime = Date.now();
+            main();
+            } )   
+   };
 
     /* This function is called by main (our game loop) and itself calls all
      * of the functions which may need to update entity's data. Based on how
@@ -79,8 +86,11 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
-        updateEntities(dt);
         checkCollisions();
+
+        updateEntities(dt);
+        checkGemTakes();
+        
     }
 
     /* This is called by the update function  and loops through all of the
@@ -95,7 +105,16 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
-    }
+       // lifeHearts.update();
+        document.getElementById("score").innerHTML=score;
+        document.getElementById("level").innerHTML=level;
+        document.getElementById("lives").innerHTML=lives;
+    };
+
+    /* This function is called by the update function when enemy bug collision with
+     * player. checkCollisions
+    
+    
 
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
@@ -148,11 +167,18 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
+        // gem.render before enemy.render's visual effect: bug gets over gem instead of gem over bug
+        
+        allGems.forEach(function(gem){
+            gem.render();
+        }); 
+
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
 
         player.render();
+        
     }
 
     /* This function does nothing but it could have been a good place to
@@ -160,7 +186,15 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        
+        document.getElementById("gameOver").style.visibility="hidden";
+        gameOver = false;
+        allEnemies = [enemy1,enemy2,enemy3];
+        allGems = [gem];
+        score = 0;
+        level = 1;
+        lives = 3;
+        player = new Player(200,400);
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -172,7 +206,11 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/Gem Green.png',// add Gem sprite images resources
+        'images/Gem Blue.png',
+        'images/Gem Orange.png',
+        'images/hearts.png'
     ]);
     Resources.onReady(init);
 
