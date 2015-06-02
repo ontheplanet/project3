@@ -13,7 +13,6 @@
  * the canvas' context (ctx) object globally available to make writing app.js
  * a little simpler to work with.
  */
-
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -28,7 +27,7 @@ var Engine = (function(global) {
     canvas.width = 505;
     canvas.height = 616;
     document.getElementById('gameArea').appendChild(canvas);
-    
+
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -70,12 +69,12 @@ var Engine = (function(global) {
         lastTime = Date.now();
         main();
         //initial game again when clicked "continue" button
-        document.getElementById('continue').addEventListener('click', function(){
+        document.getElementById('continue').addEventListener('click', function() {
             reset();
             lastTime = Date.now();
             main();
-            } )   
-   }
+        })
+    }
 
     /* This function is called by main (our game loop) and itself calls all
      * of the functions which may need to update entity's data. Based on how
@@ -89,7 +88,7 @@ var Engine = (function(global) {
     function update(dt) {
         checkCollisions();
         updateEntities(dt);
-        checkGemTakes();      
+        checkGemTakes();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -122,12 +121,12 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+                'images/water-block.png', // Top row is water
+                'images/stone-block.png', // Row 1 of 3 of stone
+                'images/stone-block.png', // Row 2 of 3 of stone
+                'images/stone-block.png', // Row 3 of 3 of stone
+                'images/grass-block.png', // Row 1 of 2 of grass
+                'images/grass-block.png' // Row 2 of 2 of grass
             ],
             numRows = 6,
             numCols = 5,
@@ -167,7 +166,7 @@ var Engine = (function(global) {
 
         allGems.forEach(function(gem) {
             gem.render();
-        }); 
+        });
 
         allEnemies.forEach(function(enemy) {
             enemy.render();
@@ -183,14 +182,14 @@ var Engine = (function(global) {
     //
     function reset() {
         //after click 'continue', gameOver panel hidden and all variables reset to initial values.
-        document.getElementById('gameOver').style.visibility='hidden';
+        document.getElementById('gameOver').style.visibility = 'hidden';
         gameOver = false;
-        allEnemies = [enemy1,enemy2,enemy3];
+        allEnemies = [enemy1, enemy2, enemy3];
         allGems = [gem];
         score = 0;
         level = 1;
         lives = 3;
-        player = new Player(200,400);
+        player = new Player(200, 400);
         lifeHearts = new LifeHearts();
     }
 
@@ -204,7 +203,7 @@ var Engine = (function(global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/Gem Green.png',// add Gem sprite images resources
+        'images/Gem Green.png', // add Gem sprite images resources
         'images/Gem Blue.png',
         'images/Gem Orange.png',
         'images/hearts.png'
