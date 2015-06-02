@@ -61,9 +61,7 @@ Enemy.prototype.render = function() {
 *  This class requires an update(), render() and a handleInput() method.
 *  @constructor
 *  @param {number} x value of player
-*  @param {number} y value of player
-*   
-*  
+*  @param {number} y value of player  
 */
 var Player = function(x,y) {
     this.sprite = 'images/char-boy.png';
