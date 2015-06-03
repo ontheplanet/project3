@@ -30,7 +30,7 @@ var Enemy = function(x,y) {
     this.y = y;
     // generate initial speed from enemySpped array
     this.speed = enemySpeed[Math.floor(Math.random()*8)];
-}
+};
 
 /** Update the enemy's position after every tick
 *  @param {number} dt, a time delta between ticks
@@ -48,14 +48,14 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     if (gameOver !== true) {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
-}
+};
 
 /** Now write your own player class
 *  This class requires an update(), render() and a handleInput() method.
@@ -67,11 +67,11 @@ var Player = function(x,y) {
     this.sprite = 'images/char-boy.png';
     this.x = x;
     this.y = y;
-}
+};
 // render player on the canvas.
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite),this.x, this.y);
-}
+};
 
 /** Condition to reset the player: if player reaches the water 
 * if player fall into the river, player lose one life
@@ -80,21 +80,21 @@ Player.prototype.render = function() {
 Player.prototype.update = function() {
      if (lives > 0) {
         if (this.y === -40) {
-            player.reset();
+            this.reset();
             lives--;
         }
     }
     else {
         GameOver();
     }
-}
+};
 
 // reset the position of player to the initial position
 Player.prototype.reset = function(){
     this.sprite = 'images/char-boy.png';
     this.x = 200;
     this.y = 400;
-}
+};
 
 // Add 1 score when player get 1 gem, level up when got 5 scores,
 // add 3 more bugs to the allEnemies array when level up.
@@ -108,7 +108,7 @@ Player.prototype.scoreAdd = function() {
             console.log(enemyi);
         }
     }
-}
+};
 
 /** Keycode presses control player's movement
 *  @param {string} key 
@@ -156,7 +156,7 @@ Player.prototype.handleInput = function(keyCode){
         //console.log(this.x);
         //console.log(this.y);
     }
-}
+};
 
 // Gem array including 3 color gems
 var GemSprites = ['images/Gem Green.png','images/Gem Blue.png','images/Gem Orange.png'];
@@ -172,12 +172,12 @@ var Gem = function() {
     this.y = Math.floor(Math.random()*3)*83+83;
     console.log(this.x);
     console.log(this.y);
-}
+};
 
 // Render a gem on canvas
 Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite),this.x, this.y);
-}
+};
 
 /** checkCollisions()
 *  function checks for enemy-player collisions. the for loop checks for 
@@ -203,7 +203,7 @@ function checkCollisions() {
 /** checkGemTakes()
 * function checks for player takes the gem. Similar to checkCollision(), 
 * score will increment 1 when player is with the 30*30 square intersection
-* allGems array been cleared, then add a new gen at a new position.
+* allGems array been cleared, then add a new gem at a new position.
 */
 function checkGemTakes() {
     for (var i = 0; i < allGems.length; i++) {
@@ -221,7 +221,7 @@ var LifeHearts = function() {
     this.sprite = 'images/hearts.png';
     this.x = 210;
     this.y = 586;
-}
+};
 
 // render life hearts.
 // paint blank before render the current life hearts 
@@ -233,7 +233,7 @@ LifeHearts.prototype.render = function() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         this.x = 210+30*i;
     }
-}
+};
 
 // When lost all lives, this function causes the 'GAMEOVER' overlay to appear and stops player and bugs' movements
 function GameOver() {
